@@ -1,0 +1,57 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "simple",
+    "auth"
+  ],
+  "homepage": "https://github.com/HasanNugroho/simple-auth#readme",
+  "bugs": {
+    "url": "https://github.com/HasanNugroho/simple-auth/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HasanNugroho/simple-auth.git"
+  },
+  "license": "ISC",
+  "author": "Burhan Nurhasan N",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "migration:create": "typeorm migration:create ./src/migrations/schema-update",
+    "migration:generate": "npx typeorm-ts-node-commonjs migration:generate ./src/migrations/$npm_config_name -d ./src/infrastructure/configs/data-source.ts",
+    "migration:show": "npx typeorm-ts-node-commonjs migration:show -d ./src/infrastructure/configs/data-source.ts",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d  ./src/infrastructure/configs/data-source.ts",
+    "migration:revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/infrastructure/configs/data-source.ts"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "class-validator-jsonschema": "^5.0.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "reflect-metadata": "^0.2.2",
+    "routing-controllers": "^0.11.2",
+    "routing-controllers-openapi": "^5.0.0",
+    "swagger-ui-express": "^5.0.1",
+    "tsx": "^4.20.3",
+    "tsyringe": "^4.10.0",
+    "typeorm": "^0.3.25"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.1.0",
+    "@types/swagger-ui-express": "^4.1.8",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

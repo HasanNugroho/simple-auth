@@ -1,0 +1,33 @@
+services:
+  # app:
+  #   build: .
+  #   container_name: simple_transaction_api
+  #   ports:
+  #     - '${PORT}:${PORT}'
+  #   environment:
+  #     NODE_ENV: ${NODE_ENV}
+  #     PORT: ${PORT}
+
+  #     DB_USER: ${DB_USER}
+  #     DB_PASS: ${DB_PASS}
+  #     DB_NAME: ${DB_NAME}
+  #     DB_PORT: ${DB_PORT}
+  #     DB_HOST: psql_bp
+  #   depends_on:
+  #     - psql_bp
+
+  psql_bp:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '${DB_PORT}:5432'
+    volumes:
+      - psql_volume_bp:/var/lib/postgresql/data
+
+volumes:
+  psql_volume_bp:
