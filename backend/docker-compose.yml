@@ -1,20 +1,21 @@
 services:
-  # app:
-  #   build: .
-  #   container_name: simple_transaction_api
-  #   ports:
-  #     - '${PORT}:${PORT}'
-  #   environment:
-  #     NODE_ENV: ${NODE_ENV}
-  #     PORT: ${PORT}
-
-  #     DB_USER: ${DB_USER}
-  #     DB_PASS: ${DB_PASS}
-  #     DB_NAME: ${DB_NAME}
-  #     DB_PORT: ${DB_PORT}
-  #     DB_HOST: psql_bp
-  #   depends_on:
-  #     - psql_bp
+  app:
+    build: .
+    container_name: simple_auth
+    ports:
+      - '${PORT}:${PORT}'
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      SECRET_KEY: ${SECRET_KEY}
+      DB_HOST: psql_bp
+    depends_on:
+      - psql_bp
+    restart: unless-stopped
 
   psql_bp:
     image: postgres:latest

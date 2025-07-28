@@ -40,6 +40,7 @@ export async function POST(request: Request) {
 
     const now = Math.floor(Date.now() / 1000);
     const accessMaxAge = accessPayload?.exp ? accessPayload.exp - now : 60 * 15;
+    console.log(token);
 
     // Get user data
     const meRes = await api.get("/auth/me", {
@@ -49,7 +50,6 @@ export async function POST(request: Request) {
     });
 
     const userData = meRes.data.data;
-    console.log(userData);
 
     // Create response and set cookies
     const response = NextResponse.json({

@@ -13,19 +13,14 @@ const connectionOptions: DataSourceOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [
-    path.join(
-      __dirname,
-      isProduction ? '../dist/entities/*.entity.js' : '../entities/*.entity.ts'
-    ),
-  ],
+  entities: [path.join(__dirname, './../entities/*.entity{.ts,.js}')],
   migrations: [
     path.join(
       __dirname,
-      isProduction ? '../dist/migrations/*.js' : '../../migrations/*.ts'
+      isProduction ? './../dist/migrations/*.js' : './../migrations/*.ts'
     ),
   ],
-  synchronize: false,
+  synchronize: true,
   logging: !isProduction,
 };
 

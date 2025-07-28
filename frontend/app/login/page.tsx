@@ -47,7 +47,7 @@ export default function Page() {
       }
 
       await res.json();
-      router.push("/dashboard");
+      router.push("/");
     } catch (error) {
       console.error("[LOGIN_ERROR]", error);
       setFormError("Terjadi kesalahan, coba lagi nanti.");
