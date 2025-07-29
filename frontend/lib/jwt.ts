@@ -14,7 +14,8 @@ export function decodeJWTPayload(token: string | undefined) {
         .join("")
     );
     return JSON.parse(jsonPayload);
-  } catch (error) {
+  } catch (error: unknown) {
+    console.error(error);
     return null;
   }
 }

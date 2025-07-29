@@ -18,7 +18,7 @@ export class AuthService implements IAuthService {
     try {
       const user = await this.userRepository.getByEmail(email);
 
-      if (!user || !bcrypt.compare(password, user.password)) {
+      if (!user || !(await bcrypt.compare(password, user.password))) {
         throw new UnauthorizedException('Invalid identifier or password');
       }
 

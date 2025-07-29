@@ -1,0 +1,16 @@
+services:
+  fe_app:
+    build:
+      context: .
+    image: nextjs_app
+    ports:
+      - "${PORT}:3000"
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true

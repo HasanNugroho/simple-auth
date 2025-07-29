@@ -1,21 +1,12 @@
 import { NextResponse } from "next/server";
 import api from "@/lib/api";
 import { SignUpSchema } from "../definitions";
+import { AxiosError } from "axios";
 
 function isAxiosError(
-  error: any
-): error is { response?: { data?: { message?: string } } } {
-  return (
-    error &&
-    typeof error === "object" &&
-    "response" in error &&
-    typeof error.response === "object" &&
-    error.response !== null &&
-    "data" in error.response &&
-    typeof error.response.data === "object" &&
-    error.response.data !== null &&
-    "message" in error.response.data
-  );
+  error: unknown
+): error is AxiosError<{ message?: string }> {
+  return (error as AxiosError).isAxiosError === true;
 }
 
 export async function POST(request: Request) {

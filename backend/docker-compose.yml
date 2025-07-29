@@ -1,5 +1,5 @@
 services:
-  app:
+  be_app:
     build: .
     container_name: simple_auth
     ports:
@@ -16,6 +16,8 @@ services:
     depends_on:
       - psql_bp
     restart: unless-stopped
+    networks:
+      - app-network
 
   psql_bp:
     image: postgres:latest
@@ -29,6 +31,12 @@ services:
       - '${DB_PORT}:5432'
     volumes:
       - psql_volume_bp:/var/lib/postgresql/data
+    networks:
+      - app-network
 
 volumes:
   psql_volume_bp:
+
+networks:
+  app-network:
+    external: true

@@ -8,6 +8,7 @@ import { container } from 'tsyringe';
 import { ErrorMiddleware } from './infrastructure/middlewares/error.middleware';
 import { UserRepository } from './infrastructure/repository/user.repository';
 import { securityMiddleware } from './infrastructure/middlewares/security.middleware';
+import limiter from './infrastructure/middlewares/limiter.middleware';
 const jwt = require('jsonwebtoken');
 
 dotenv.config();
@@ -65,6 +66,7 @@ const PORT = Number(process.env.PORT) || 3000;
   };
 
   app.use(securityMiddleware);
+  app.use(limiter);
 
   useExpressServer(app, routingControllersOptions);
 
